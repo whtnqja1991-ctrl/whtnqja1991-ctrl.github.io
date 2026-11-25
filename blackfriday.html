@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>블랙프라이데이 직구 체크리스트</title>
+<meta name="description" content="2026년 블랙프라이데이(11월 27일) 해외직구 전에 꼭 확인할 통관 체크리스트. 면세 한도 150달러·미국 200달러, 합산과세, 배대지 합배송, 영양제 6병, 개인통관고유부호까지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: 통관노트 본문 글, 실무자가 차분하게 설명
+IDEA: 주문부터 도착까지 화물이 지나가는 단계별 체크 포인트
+PICTURE: 4단계 진행 체크리스트, 체크할수록 진행 막대가 참
+COLOUR and TYPE: 사이트와 같은 크라프트 갈색, 흰 종이, 세관 빨강 / IBM Plex Sans KR
+LAYOUT: 내비, 제목과 결론, 진행 체크리스트, 단계별 본문, 출처, 푸터
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#fffdf8,#1d1813);--ink:light-dark(#1f1a14,#f3ece1);--mute:light-dark(#6b5e4d,#b9ab96);
+--line:light-dark(#e3d8c6,#3d3328);--red:light-dark(#c8282e,#ff6b66);--green:light-dark(#1f7a4d,#5fd39a);
+--soft:light-dark(#f5eee2,#2a231b);--kraft:light-dark(#c9a877,#2a2118);--deep:light-dark(#3b2a18,#140f0a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 "IBM Plex Sans KR",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+nav{background:var(--deep);color:#f3ece1;padding:14px max(5vw,16px)}
+nav .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:18px;text-decoration:none}.logo b{color:#ff8a7a}
+nav a.back{font-size:15px;opacity:.85}
+header{background:var(--kraft);padding:clamp(28px,5vw,56px) max(5vw,16px)}
+.col{max-width:760px;margin:0 auto}
+.crumb{font-size:14px;color:light-dark(#4a3a26,#b9ab96);margin:0 0 8px}
+h1{font-size:clamp(30px,4.4vw,44px);line-height:1.12;margin:0 0 14px;text-wrap:balance}
+.answer{background:var(--bg);border-radius:12px;padding:16px 20px;font-size:17px;box-shadow:0 14px 30px -18px rgba(40,25,10,.5)}
+.answer strong{color:var(--red)}
+.meta{font-size:13px;color:light-dark(#4a3a26,#b9ab96);margin:12px 0 0}
+main{padding:clamp(24px,4vw,48px) max(5vw,16px)}
+h2{font-size:clamp(22px,2.8vw,28px);line-height:1.25;margin:44px 0 12px;text-wrap:balance}
+h2 .no{display:inline-block;background:var(--deep);color:#f3ece1;border-radius:8px;padding:0 10px;margin-right:8px;font-size:.8em}
+p{margin:0 0 16px}
+.board{background:var(--soft);border-radius:14px;padding:20px;border-top:2px dashed var(--line)}
+.board h3{margin:0 0 4px;font-size:18px}
+.bar{height:12px;background:var(--line);border-radius:6px;overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+#prog{font-size:14px;color:var(--mute);margin:0 0 14px}
+.stage{margin:14px 0 6px;font-size:14px;font-weight:700;color:var(--red)}
+ul.check{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+ul.check label{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:16px;line-height:1.5}
+ul.check input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--green)}
+ul.check input:checked+span{text-decoration:line-through;color:var(--mute)}
+.reset{margin-top:12px;min-height:44px;padding:8px 16px;border-radius:10px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:16px;margin:4px 0 18px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:14px;color:var(--mute)}
+td.n{white-space:nowrap;font-weight:600}
+.tip{background:var(--soft);border-left:4px solid var(--red);border-radius:8px;padding:12px 16px;margin:0 0 16px;font-size:16px}
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:10px;background:var(--deep);color:#f3ece1;text-decoration:none;font-weight:600}
+.cta:focus-visible,.reset:focus-visible,ul.check input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ad{border:1.5px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font-size:13px;color:var(--mute);margin:28px 0}
+.src{font-size:14px;color:var(--mute)}.src li{margin-bottom:4px}
+footer{background:var(--deep);color:#b9ab96;font-size:13px;padding:20px max(5vw,16px) 32px}
+footer a{color:#f3ece1}
+@media(max-width:600px){table{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="in"><a class="logo" href="index.html">통관<b>노트</b></a><a class="back" href="index.html#calc">관세 계산기로 가기</a></div></nav>
+
+<header><div class="col">
+  <p class="crumb">직구 가이드 · 블랙프라이데이</p>
+  <h1>2026 블랙프라이데이 직구, 결제 전에 이것만 확인하세요</h1>
+  <div class="answer">올해 블랙프라이데이는 <strong>11월 27일 금요일</strong>이에요. 할인보다 무서운 게 통관에서 생기는 세금과 보류예요. 면세 한도, 합산과세, 합배송, 영양제 수량, 통관부호 다섯 가지만 챙기면 대부분 막을 수 있어요.</div>
+  <p class="meta">2026년 11월 기준으로 정리했어요 · 읽는 시간 5분</p>
+</div></header>
+
+<main>
+<div class="col">
+  <div class="board">
+    <h3>주문 전 체크리스트</h3>
+    <div class="bar" aria-hidden="true"><i id="fill"></i></div>
+    <p id="prog" aria-live="polite">0 / 9 완료</p>
+    <div id="list"></div>
+    <button class="reset" id="reset" type="button">처음부터 다시</button>
+  </div>
+
+  <h2><span class="no">1</span>면세 한도부터 확인하세요</h2>
+  <table>
+    <thead><tr><th>상황</th><th>면세 한도</th></tr></thead>
+    <tbody>
+      <tr><td>미국에서 특송(DHL, FedEx 등)으로 받을 때</td><td class="n">200달러 이하</td></tr>
+      <tr><td>미국에서 국제우편으로 받을 때</td><td class="n">150달러 이하</td></tr>
+      <tr><td>미국 외 다른 나라</td><td class="n">150달러 이하</td></tr>
+      <tr><td>건강기능식품 (미국발 포함)</td><td class="n">150달러 이하</td></tr>
+    </tbody>
+  </table>
+  <p>여기서 "물품 가격"에는 물건값뿐 아니라 <strong>판매 국가 안에서 붙는 세금, 현지 배송비, 보험료</strong>도 들어가요. 미국 쇼핑몰에서 결제창에 세일즈택스가 붙었다면 그 금액까지 합쳐서 한도를 보세요. 한국까지 오는 국제 배송비는 한도 판단에서는 빠져요.</p>
+  <div class="tip">한도를 1달러라도 넘으면 넘은 금액이 아니라 <strong>전체 금액</strong>에 관세와 부가세가 붙어요. 이때는 국제 배송비도 세금 계산에 들어가요.</div>
+  <p><a class="cta" href="index.html#calc">관세 계산기로 확인하기</a></p>
+
+  <h2><span class="no">2</span>같은 판매자, 같은 날 결제는 합쳐서 봐요</h2>
+  <p>블프에 가장 많이 하는 실수예요. 한도를 넘지 않게 주문을 둘로 나눠도, 같은 판매자에게 같은 날 결제했다면 합계로 판단해요. 반대로 판매자가 다르거나 결제일이 다르면, 같은 날 한국에 도착해도 따로 봐요. 기준은 도착일이 아니라 <strong>결제일</strong>이에요.</p>
+  <p>자세한 사례는 <a href="hapsan.html">합산과세 완전정리</a>에 정리해 뒀어요.</p>
+
+  <div class="ad">광고 영역 · 본문 중간 배너</div>
+
+  <h2><span class="no">3</span>배대지 합배송은 금액부터 계산하세요</h2>
+  <p>배송대행지에서 여러 쇼핑몰 물건을 한 상자로 묶으면 배송비는 아낄 수 있어요. 하지만 운송장이 하나가 되면서 한 건으로 통관돼요. 따로 보내면 각각 면세였던 물건도, 묶는 순간 한도를 넘어 전액 과세될 수 있어요.</p>
+  <p>합배송 신청 버튼을 누르기 전에 묶을 물건의 가격을 모두 더해 보세요. 한도를 넘는다면 두 상자로 나눠 보내는 배송비와, 묶었을 때 나올 세금을 비교해서 고르면 돼요.</p>
+
+  <h2><span class="no">4</span>영양제는 6병, 150달러</h2>
+  <p>블프에 영양제를 쟁여 두는 분이 많은데, 건강기능식품은 규칙이 달라요. 미국에서 보내도 200달러 특례가 적용되지 않고 150달러가 한도예요. 그리고 한 번 통관할 때 자가사용으로 인정되는 양은 <strong>최대 6병</strong>이에요. 6병을 넘기면 금액과 상관없이 통관이 보류될 수 있어요.</p>
+  <p>가족 것까지 한꺼번에 사야 한다면 결제일을 나누고, 각 주문을 6병, 150달러 안으로 맞추세요.</p>
+
+  <h2><span class="no">5</span>개인통관고유부호와 우편번호를 맞추세요</h2>
+  <p>2026년부터 통관부호에 유효기간이 생겼고, 이름과 전화번호에 더해 <strong>배송지 우편번호</strong>까지 맞아야 통관이 돼요. 이사를 했거나 회사로 받는다면, 주문하기 전에 유니패스에서 등록된 정보를 확인하세요. 정보가 안 맞으면 물건이 세관에 묶일 수 있어요.</p>
+  <p>내 만료일은 <a href="pccc.html">개인통관고유부호 갱신 글</a>의 계산기로 바로 확인할 수 있어요.</p>
+
+  <h2>도착 후에 반품하게 되면</h2>
+  <p>세금을 내고 받은 물건을 반품한다면 관세를 돌려받을 수 있어요. 다만 수입신고가 끝난 날부터 <strong>6개월 안에</strong> 판매자 주소로 반송해야 해요. 판매자 주소가 아닌 곳으로 보내면 환급이 안 되거나 서류를 더 내야 할 수 있어요. 반품 송장과 환불 내역은 꼭 보관해 두세요.</p>
+
+  <div class="ad">광고 영역 · 본문 하단 배너</div>
+
+  <h2>함께 읽으면 좋은 글</h2>
+  <p><a href="hapsan.html">같은 날 도착하면 세금 폭탄? 해외직구 합산과세 완전정리</a><br><a href="pccc.html">개인통관고유부호, 이제 매년 갱신해야 해요</a></p>
+
+  <h2>참고한 자료</h2>
+  <ul class="src">
+    <li><a href="https://www.customs.go.kr/kcs/ad/tax/BuyTaxCalculation.do?mi=2853">관세청 해외직구물품 예상세액 조회시스템</a></li>
+    <li><a href="https://m.korea.kr/news/policyNewsView.do?newsId=148957712">대한민국 정책브리핑 해외직구 체크리스트</a></li>
+    <li><a href="https://www.tossbank.com/articles/customs">해외 직구 관세, 면세 기준부터 환급까지 (토스뱅크)</a></li>
+  </ul>
+  <p class="src">이 글은 2026년 11월 기준 공개 자료를 정리한 참고 자료예요. 실제 과세 여부는 세관의 판단에 따라 달라질 수 있어요.</p>
+</div>
+</main>
+
+<footer><div class="col">© 통관노트 · <a href="index.html">홈으로</a> · <a href="hapsan.html">합산과세</a> · <a href="pccc.html">통관부호 갱신</a></div></footer>
+
+<script>
+{
+const stages=[
+  ["결제 전",["물건값에 현지 세금, 현지 배송비까지 더해 한도(150달러, 미국 특송 200달러) 안인지 확인했다","같은 판매자에게 오늘 이미 결제한 주문이 있는지 확인했다","영양제는 6병, 150달러 안으로 맞췄다"]],
+  ["배대지 신청할 때",["합배송할 물건의 가격 합계가 한도를 넘지 않는지 확인했다","한도를 넘는다면 나눠 보내는 배송비와 세금을 비교했다"]],
+  ["주문서 쓸 때",["개인통관고유부호 만료일을 확인했다","통관부호에 등록된 주소와 우편번호가 배송지와 같다","결제 내역(결제일)을 캡처해 두었다"]],
+  ["도착 후",["반품한다면 6개월 안에 판매자 주소로 보낸다는 걸 알고 있다"]]
+];
+const KEY="tn-bf-2026";
+let saved=[];try{saved=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){}
+let n=0;
+document.getElementById("list").innerHTML=stages.map(([t,items])=>`<p class="stage">${t}</p><ul class="check">${items.map(x=>{const i=n++;return `<li><label><input type="checkbox" data-i="${i}"${saved.includes(i)?" checked":""}><span>${x}</span></label></li>`}).join("")}</ul>`).join("");
+const boxes=[...document.querySelectorAll("#list input")],fill=document.getElementById("fill"),prog=document.getElementById("prog");
+function upd(){
+  const on=boxes.filter(b=>b.checked).map(b=>+b.dataset.i),t=boxes.length;
+  fill.style.width=(on.length/t*100)+"%";
+  prog.textContent=on.length===t?`${t} / ${t} 완료 · 이제 마음 놓고 결제하세요!`:`${on.length} / ${t} 완료`;
+  try{localStorage.setItem(KEY,JSON.stringify(on))}catch(e){}
+}
+boxes.forEach(b=>b.addEventListener("change",upd));
+document.getElementById("reset").addEventListener("click",()=>{boxes.forEach(b=>b.checked=false);upd()});
+upd();
+}
+</script>
+</body>
+</html>
