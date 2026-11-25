@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>합산과세 완전정리</title>
+<meta name="description" content="해외직구 합산과세 기준을 물류 실무자가 정리했어요. 같은 날 도착하면 합쳐서 과세될까? 결제일 기준, 배대지 합배송, 실제 세금 계산 예시까지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: 통관노트 본문 글, 실무자가 차분하게 설명
+IDEA: 운송장 두 장이 합쳐지느냐 따로 가느냐
+PICTURE: 네 가지 상황을 운송장 카드로 나란히, 합산은 빨간 도장
+COLOUR and TYPE: 사이트와 같은 크라프트 갈색, 흰 종이, 세관 빨강 / IBM Plex Sans KR
+LAYOUT: 내비, 제목과 결론, 상황 카드, 본문, 계산 예시, 체크리스트, 푸터
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#fffdf8,#1d1813);--ink:light-dark(#1f1a14,#f3ece1);--mute:light-dark(#6b5e4d,#b9ab96);
+--line:light-dark(#e3d8c6,#3d3328);--red:light-dark(#c8282e,#ff6b66);--green:light-dark(#1f7a4d,#5fd39a);
+--soft:light-dark(#f5eee2,#2a231b);--kraft:light-dark(#c9a877,#2a2118);--deep:light-dark(#3b2a18,#140f0a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 "IBM Plex Sans KR",system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+nav{background:var(--deep);color:#f3ece1;padding:14px max(5vw,16px)}
+nav .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:18px;text-decoration:none}.logo b{color:#ff8a7a}
+nav a.back{font-size:15px;opacity:.85}
+header{background:var(--kraft);padding:clamp(28px,5vw,56px) max(5vw,16px)}
+.col{max-width:760px;margin:0 auto}
+.crumb{font-size:14px;color:light-dark(#4a3a26,#b9ab96);margin:0 0 8px}
+h1{font-size:clamp(30px,4.4vw,44px);line-height:1.12;margin:0 0 14px;text-wrap:balance}
+.answer{background:var(--bg);border-radius:12px;padding:16px 20px;font-size:17px;box-shadow:0 14px 30px -18px rgba(40,25,10,.5)}
+.answer strong{color:var(--red)}
+.meta{font-size:13px;color:light-dark(#4a3a26,#b9ab96);margin:12px 0 0}
+main{padding:clamp(24px,4vw,48px) max(5vw,16px)}
+h2{font-size:clamp(22px,2.8vw,28px);line-height:1.25;margin:44px 0 12px;text-wrap:balance}
+p{margin:0 0 16px}
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;max-width:1000px;margin:8px auto 0}
+.case{background:var(--soft);border-radius:12px;padding:16px 18px;border-top:2px dashed var(--line);position:relative}
+.case h3{font-size:16px;margin:0 0 6px;line-height:1.4;padding-right:88px}
+.case p{font-size:15px;margin:0;line-height:1.6}
+.st{position:absolute;top:14px;right:14px;border:2.5px solid currentColor;border-radius:7px;padding:1px 8px;font-weight:700;font-size:14px;transform:rotate(-5deg);color:var(--red);white-space:nowrap}
+.st.ok{color:var(--green)}.st.q{color:var(--mute)}
+.calc{background:var(--soft);border-radius:12px;padding:18px 20px;margin:8px 0 18px}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:8px 4px;border-bottom:1px solid var(--line)}
+td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr.t td{font-weight:700;border-bottom:0;font-size:18px}
+ul.check{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:8px}
+ul.check label{display:flex;gap:12px;align-items:flex-start;background:var(--soft);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:16px;line-height:1.5}
+ul.check input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--red)}
+#verdict{font-weight:600;padding:12px 16px;border-radius:10px;background:var(--soft);border-left:4px solid var(--green)}
+#verdict.bad{border-left-color:var(--red)}
+.cta{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:10px;background:var(--deep);color:#f3ece1;text-decoration:none;font-weight:600}
+.cta:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ad{border:1.5px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font-size:13px;color:var(--mute);margin:28px 0}
+.src{font-size:14px;color:var(--mute)}.src li{margin-bottom:4px}
+footer{background:var(--deep);color:#b9ab96;font-size:13px;padding:20px max(5vw,16px) 32px}
+footer a{color:#f3ece1}
+</style>
+</head>
+<body>
+<nav><div class="in"><a class="logo" href="index.html">통관<b>노트</b></a><a class="back" href="index.html#calc">관세 계산기로 가기</a></div></nav>
+
+<header><div class="col">
+  <p class="crumb">직구 가이드 · 합산과세</p>
+  <h1>같은 날 도착하면 세금 폭탄? 해외직구 합산과세 완전정리</h1>
+  <div class="answer">결론부터 말하면, <strong>도착일이 아니라 결제일과 판매자</strong>가 기준이에요. 같은 판매자에게 같은 날 산 물건을 나눠 받으면 합쳐서 과세되고, 판매자나 결제일이 다르면 같은 날 도착해도 따로 봐요.</div>
+  <p class="meta">2026년 11월 기준으로 정리했어요 · 읽는 시간 4분</p>
+</div></header>
+
+<main>
+<div class="col">
+  <p>블랙프라이데이 시즌이면 고객사와 지인들에게 가장 많이 받는 질문이 "150달러 안 넘게 나눠 샀는데 세금이 나왔어요"예요. 물류 현장에서 이런 건을 자주 보다 보니, 헷갈리는 부분만 모아서 정리해 봤어요.</p>
+
+  <h2>합산과세가 뭔가요?</h2>
+  <p>해외직구는 개인이 직접 쓸 물건이고 물품 가격이 150달러 이하(미국발 특송은 200달러 이하)면 관세와 부가세가 면제돼요. 그런데 한 번에 사면 한도를 넘는 물건을 일부러 여러 상자로 나눠 들여오는 걸 막기 위해, 일정한 경우에는 가격을 합쳐서 한도 초과 여부를 판단해요. 이게 합산과세예요.</p>
+  <p>중요한 점은, 합쳐서 한도를 넘으면 <strong>넘은 금액만이 아니라 전체 금액</strong>에 관세와 부가세가 붙는다는 거예요.</p>
+
+  <h2>2022년에 기준이 바뀌었어요</h2>
+  <p>예전에는 서로 다른 날 산 물건이라도 배송이 밀려서 같은 날 한국에 들어오면(입항일이 같으면) 합쳐서 과세했어요. 구매자 잘못이 아닌데 세금을 내야 해서 민원이 많았죠.</p>
+  <p>관세청이 고시에서 이 "입항일 기준"을 삭제하면서, 2022년 11월 17일 이후 통관되는 물품부터는 판매자가 다르거나 같은 판매자라도 결제일이 다르면 같은 날 도착해도 합산하지 않아요. 이 기준은 2026년 지금도 그대로예요.</p>
+</div>
+
+<div class="cases">
+  <div class="case"><span class="st">합산</span><h3>같은 판매자 · 같은 날 결제 · 두 상자로 나눠 받음</h3><p>전형적인 합산과세 대상이에요. 나눠 받아도 합계로 봐요.</p></div>
+  <div class="case"><span class="st ok">따로</span><h3>같은 판매자 · 다른 날 결제 · 같은 날 도착</h3><p>결제일이 다르면 따로 봐요. 결제 내역을 꼭 남겨 두세요.</p></div>
+  <div class="case"><span class="st ok">따로</span><h3>다른 판매자 · 같은 날 결제 · 각각 배송</h3><p>판매자가 다르고 운송장도 따로면 각각 한도를 적용해요.</p></div>
+  <div class="case"><span class="st">주의</span><h3>배송대행지에서 한 상자로 합배송</h3><p>운송장이 하나로 묶이면 한 건으로 신고돼서 합계가 기준이 돼요. 합배송 전에 물건값 합계를 먼저 확인하세요.</p></div>
+</div>
+
+<div class="col">
+  <div class="ad">광고 영역 · 본문 중간 배너</div>
+
+  <h2>실제로 얼마나 나올까? 계산 예시</h2>
+  <p>미국 쇼핑몰의 같은 판매자에게 같은 날 의류를 120달러, 100달러로 나눠 결제하고 두 상자로 받았다고 해볼게요. 한 건씩 보면 둘 다 200달러 이하지만, 합치면 220달러라 한도를 넘어요.</p>
+  <div class="calc">
+    <table>
+      <tr><td>과세가격 (220달러 × 1,400원)</td><td class="n">308,000원</td></tr>
+      <tr><td>관세 (의류 13%)</td><td class="n">40,040원</td></tr>
+      <tr><td>부가세 (과세가격 + 관세의 10%)</td><td class="n">34,804원</td></tr>
+      <tr class="t"><td>내야 할 세금</td><td class="n">74,844원</td></tr>
+    </table>
+  </div>
+  <p>20달러 넘겼을 뿐인데 세금이 7만 원 넘게 나와요. 국제 배송비가 있었다면 그 금액도 과세가격에 더해져서 세금이 더 커져요. 환율 1,400원은 예시 값이에요.</p>
+  <p><a class="cta" href="index.html#calc">내 주문으로 계산해 보기</a></p>
+
+  <h2>주문 전 30초 셀프 체크</h2>
+  <p>해당하는 항목에 체크해 보세요.</p>
+  <ul class="check" id="chk">
+    <li><label><input type="checkbox">같은 판매자에게 오늘 결제한 주문이 2건 이상 있다</label></li>
+    <li><label><input type="checkbox">배송대행지에서 여러 주문을 한 상자로 합배송할 예정이다</label></li>
+    <li><label><input type="checkbox">위 주문들의 물건값을 합치면 150달러(미국발 특송 200달러)를 넘는다</label></li>
+    <li><label><input type="checkbox">영양제 등 건강기능식품이 포함되어 있다 (미국발도 150달러 한도)</label></li>
+  </ul>
+  <p id="verdict" aria-live="polite">체크한 항목이 없어요. 지금 주문은 합산과세 걱정이 적어요.</p>
+
+  <h2>세금을 아끼는 실무 팁</h2>
+  <p><strong>결제일 증빙을 남겨 두세요.</strong> 날짜가 다른 주문이 같은 날 도착했을 때 결제 내역이 있으면 따로 판단받을 수 있어요.</p>
+  <p><strong>합배송은 금액부터 확인하세요.</strong> 배송비 아끼려다 세금이 더 나오는 경우가 많아요.</p>
+  <p><strong>억지로 나누지 마세요.</strong> 한도를 피하려고 같은 날 같은 판매자 주문을 쪼개는 건 바로 합산과세 대상이에요. 한 번에 사고 세금을 미리 계산해 두는 편이 마음 편해요.</p>
+
+  <div class="ad">광고 영역 · 본문 하단 배너</div>
+
+  <h2>참고한 자료</h2>
+  <ul class="src">
+    <li><a href="https://www.customs.go.kr/kcs/ad/tax/BuyTaxCalculation.do?mi=2853">관세청 해외직구물품 예상세액 조회시스템</a></li>
+    <li><a href="https://www.kita.net/board/totalTradeNews/totalTradeNewsDetail.do?no=71611">해외직구 입항일 같아 부과되던 합산과세 사라진다 (한국무역협회, 2022.11.16)</a></li>
+  </ul>
+  <p class="src">이 글은 일반적인 기준을 정리한 참고 자료예요. 실제 과세 여부는 세관의 판단에 따라 달라질 수 있어요.</p>
+</div>
+</main>
+
+<footer><div class="col">© 통관노트 · <a href="index.html">홈으로</a></div></footer>
+
+<script>
+{
+const boxes=[...document.querySelectorAll("#chk input")],v=document.getElementById("verdict");
+const upd=()=>{
+  const c=boxes.map(b=>b.checked),n=c.filter(Boolean).length;
+  const risk=c[2]&&(c[0]||c[1]);
+  v.classList.toggle("bad",risk||(c[3]&&c[2]));
+  v.textContent=n===0?"체크한 항목이 없어요. 지금 주문은 합산과세 걱정이 적어요."
+    :risk?"합산과세 가능성이 높아요. 주문 전에 계산기로 세금을 미리 확인해 보세요."
+    :c[3]?"건강기능식품은 미국발이어도 150달러 기준이고, 한 번에 6병까지만 통관돼요."
+    :"아직 한도는 넘지 않았어요. 주문을 더 추가하면 합계를 다시 확인하세요.";
+};
+boxes.forEach(b=>b.addEventListener("change",upd));
+}
+</script>
+</body>
+</html>
